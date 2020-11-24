@@ -3,43 +3,6 @@ const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
-var path = require("path");
-var fs = require("fs");
-var express = require("express");
-var app = express();
-var tableData = require(".../db/db.json");
-
-// HTML routes
-app.get("/notes", function(req, res) {
-  res.sendFile(path.join(__dirname, "notes.html"));
-});
-
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-// api routes
-app.get("/api/db", function(req, res) {
-  res.json(tableData);
-});
-
-app.post("/api/db", function(req, res) {
-
-  if (tableData.length < 5) {
-    tableData.push(req.body);
-    res.json(true);
-  }
-  else {
-    waitListData.push(req.body);
-    res.json(false);
-  }
-});
-
-app.delete("/api/notes/:id", (req, res) => {
-  const rev = req.params.rev || req.query.rev;
-  actions.remove(req.params.id, rev, handleResult(res));
- });
-
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
