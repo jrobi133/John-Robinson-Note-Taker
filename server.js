@@ -18,13 +18,11 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
   });
   
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-});
+
   
   // api routes
 app.get("/api/notes", function(req, res) {
-  fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+  fs.readFile("./db/db.json", 'utf-8', (err, data) => {
     try {
       let db = JSON.parse(data);
       res.send(db);
@@ -36,18 +34,22 @@ app.get("/api/notes", function(req, res) {
     }
   });
 });
-  
+
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+}); 
+ 
 app.post("/api/notes", function(req, res) {
   let { body } = req;
   if (body === undefined) {
     res.send(`Undefined!`);
     return;
   }
-  fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+  fs.readFile("./db/db.json", 'utf-8', (err, data) => {
     let db = JSON.parse(data);
     body.id = db.length;
     db.push(body);
-    fs.writeFile('./db/db.json', JSON.stringify(db), err => {
+    fs.writeFile("./db/db.json", JSON.stringify(db), err => {
       if(!err) {
         res.send('ok');
       } else {
