@@ -2,18 +2,24 @@ var path = require("path");
 var fs = require("fs");
 var express = require("express");
 var app = express();
-var tableData = require(".../db/db.json");
+// var tableData = require(".../db/db.json");
 
 // port
 let PORT = process.env.PORT || 3001
 
+app.use(express.static('public'));
+app.use(express.urlencoded({
+    extended: true
+}));
+app.use(express.json());
+
 // HTML routes
 app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
   });
   
 app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
   
   // api routes
@@ -72,6 +78,6 @@ app.delete("/api/notes/:id", (req, res) => {
 
 // Server listening
 app.listen(PORT, function() {
-    console.log("App listening on PORT" + PORT);
+    console.log("App listening on PORT " + PORT);
   });
   
