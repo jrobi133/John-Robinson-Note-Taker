@@ -3,7 +3,7 @@
 [![Website](https://img.shields.io/website-portfolio-down-green-red/http/lbesson.bitbucket.org.svg)](https://jrobi133.github.io/PortfolioJohnRobinson/index.html)
 ## Description:
     
-This is an application that can be used to write, save, and delete notes.
+This is an application that can be used to write, save, and delete notes. To see this app deployed on Heroku please click here: https://pacific-plains-75638.herokuapp.com/notes
     
     
 ## Table of Contents:
